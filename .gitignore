@@ -1,0 +1,6 @@
+.DS_Store
+.editorconfig
+.idea
+.vscode
+*.sublime*
+node_modules
