@@ -1,14 +1,7 @@
+@import url("../vendor/normalize.css");
 @import url("../vendor/fonts.css");
-
-.page {
-    background-color: #f5f6f7;
-    max-width: 1280px;
-    margin: 0 auto;
-    font-family: "Poppins", "Arial", "sans-serif";
-}
-
-.cards__container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
+@import url("../blocks/header.css");
+@import url("../blocks/page.css");
+@import url("../blocks/profile.css");
+@import url("../blocks/cards.css");
+@import url("../blocks/card.css");
