@@ -16,4 +16,4 @@ Spots is a convenient and fun way to share your favorite captured memories with 
 
 This webpage is deployed to GitHub Pages
 
--Deployment link:
+-Deployment link: 
