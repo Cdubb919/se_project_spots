@@ -4,3 +4,7 @@
     padding: 34px 0 20px;
     justify-content: center;
 }
+
+.footer__copyright {
+    margin: 0;
+}
