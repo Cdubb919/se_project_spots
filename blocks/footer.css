@@ -2,7 +2,7 @@
   border-top: 1px rgba(33, 33, 33, 0.4) solid;
   display: flex;
   justify-content: center;
-  padding: 36px 0;
+  padding: 60px 0;
 }
 
 .footer__copyright {
@@ -10,4 +10,6 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
+  color: #212121;
+  opacity: 70%;
 }
