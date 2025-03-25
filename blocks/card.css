@@ -1,14 +1,13 @@
 .card {
-  width: 413px;
-  margin: 0 0 40px;
+  max-width: 413px;
 }
 
 .card__image {
   height: 413px;
-  width: 100%;
+  width: 413px;
   object-fit: cover;
   display: block;
-  border-radius: 8px;
+  border-radius: 8px;  
 }
 
 .card__title {
@@ -20,6 +19,7 @@
   font-weight: 500;
   color: #212121;
   font-size: 20px;
+  margin: 0;
 }
 
 .card__like-btn {
@@ -40,12 +40,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 413px;
-  margin: 0;
 }
 
 @media screen and (max-width: 627px) {
   .card__image {
     height: 288px;
+  }
+
+  .card__title {
+    font-size: 16px;
+    line-height: 100%;
   }
 }
