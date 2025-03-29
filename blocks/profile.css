@@ -10,13 +10,13 @@
   width: 149px;
   background-color: #212121;
   color: #fcf5e5;
-  margin-top: auto;
   border-radius: 2px;
   font-size: 16px;
   font-weight: 500;
   line-height: 100%;
   gap: 8px;
   margin-left: auto;
+  margin-top: auto;
 }
 
 .profile__add-btn:hover {
@@ -69,17 +69,18 @@
   margin-top: auto;
   opacity: 70%;
   border: none;
+  display: flex;
   background-color: transparent;
   gap: 8px;
   font-size: 16px;
   font-weight: 500;
   line-height: 100%;
   color: #212121;
-  display: flex;
 }
 
 .profile__edit-btn:hover {
   cursor: pointer;
+  opacity: 100%;
 }
 
 @media screen and (max-width: 627px) {
