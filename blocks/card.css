@@ -3,11 +3,11 @@
 }
 
 .card__image {
-  height: 413px;
+  height: 445px;
   width: 413px;
   object-fit: cover;
   display: block;
-  border-radius: 8px;  
+  border-radius: 8px; 
 }
 
 .card__title {
@@ -40,11 +40,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 12px;
 }
 
 @media screen and (max-width: 627px) {
   .card__image {
-    height: 288px;
+    height: 318px;
+    width: 288px;
+    gap: 12px;
+    padding-bottom: 20px;
+
   }
 
   .card__title {
