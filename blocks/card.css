@@ -3,11 +3,11 @@
 }
 
 .card__image {
-  height: 445px;
+  height: 413px;
   width: 413px;
   object-fit: cover;
   display: block;
-  border-radius: 8px; 
+  border-radius: 8px;
 }
 
 .card__title {
@@ -45,11 +45,8 @@
 
 @media screen and (max-width: 627px) {
   .card__image {
-    height: 318px;
+    height: 288px;
     width: 288px;
-    gap: 12px;
-    padding-bottom: 20px;
-
   }
 
   .card__title {

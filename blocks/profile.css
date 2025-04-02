@@ -24,8 +24,8 @@
 }
 
 .profile__add-btn-icon {
-    width: 12px;
-    height: 12px;
+  width: 12px;
+  height: 12px;
 }
 
 .profile__add-btn:hover {
@@ -37,6 +37,7 @@
   height: 190px;
   width: 190px;
   margin-right: 20px;
+  border-radius: 8px;
 }
 
 .profile__column {
@@ -124,11 +125,7 @@
 
   .profile__add-btn {
     margin: 0;
-    gap: 8px;
-    display: flex;
     width: 288px;
-    height: 52px;
-    border-radius: 8px;
     padding: 18px 32px;
   }
 }
