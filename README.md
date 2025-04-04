@@ -20,4 +20,4 @@ This webpage is deployed to GitHub Pages
 
 Link to Project Page: https://cdubb919.github.io/se_project_spots/
 
-Link to Project 3 Spots Video: https://drive.google.com/file/d/1BdLjbM368B947PPO0BWC_2m0eR7a7nCr/view?usp=sharing
+Link to Project 3 Spots Video: https://drive.google.com/file/d/1x_DsmxOFe8dZtKXKrqFqyvtrmgenaEyg/view?usp=drive_link

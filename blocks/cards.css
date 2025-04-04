@@ -11,11 +11,16 @@
   grid-template-columns: repeat(auto-fit, 413px);
   gap: 40px 20px;
   justify-content: center;
+  border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
 }
 
 @media screen and (max-width: 627px) {
   .cards__list {
     grid-template-columns: repeat(auto-fit, 288px);
     gap: 20px;
+  }
+
+  .cards {
+    padding-bottom: 20px; 
   }
 }
