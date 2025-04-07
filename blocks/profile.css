@@ -130,7 +130,8 @@
   .profile__column {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
   }
 
   .profile__add-btn {
