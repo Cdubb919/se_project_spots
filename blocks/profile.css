@@ -95,7 +95,6 @@
 
 @media screen and (max-width: 627px) {
   .profile {
-    display: flex;
     flex-direction: column;
     max-width: 288px;
     align-items: center;
@@ -122,13 +121,13 @@
   }
 
   .profile__edit-btn {
-    display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
+    margin-top: 32px;
   }
 
   .profile__column {
-    display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
