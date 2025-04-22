@@ -109,7 +109,9 @@
     </footer>
     <div class="modal" id="edit-profile-modal">
       <div class="modal__container">
-        <button class="modal__close-btn">X</button>
+        <button class="modal__close-btn">
+          <img src="./images/closeicon.svg" alt="close-icon">
+        </button>
         <h2 class="modal__title">Edit profile</h2>
         <form class="modal__form">
           <label for="profile-name-input" class="modal__label">
@@ -119,6 +121,7 @@
               type="text"
               class="modal__input"
               placeholder="Type your name"
+              required
             />
           </label>
           <label for="profile-description-input" class="modal__label">
@@ -128,6 +131,7 @@
               type="text"
               class="modal__input"
               placeholder="Describe yourself"
+              required
             />
           </label>
           <button type="submit" class="modal__submit-btn">Save</button>
@@ -136,7 +140,9 @@
     </div>
     <div class="modal" id="new-post-modal">
       <div class="modal__container">
-        <button class="modal__close-btn">X</button>
+        <button class="modal__close-btn">
+          <img src="./images/closeicon.svg" alt="close-icon">
+        </button>
         <h2 class="modal__title">New Post</h2>
         <form class="modal__form">
           <label for="card-image-input" class="modal__label">
@@ -146,6 +152,7 @@
               type="url"
               class="modal__input"
               placeholder="Paste a link to the picture"
+              required
             />
           </label>
           <label for="caption-description-input" class="modal__label">
@@ -155,6 +162,7 @@
               type="text"
               class="modal__input"
               placeholder="Type your caption"
+              required
             />
           </label>
           <button type="submit" class="modal__submit-btn">Save</button>

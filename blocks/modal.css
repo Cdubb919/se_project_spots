@@ -9,12 +9,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Poppins", "Arial", "Helvetica", "san-serif";
+  font-family: "Poppins", "Arial", "Helvetica", "sans-serif";
   transition: visibility 0.4s, opacity 0.4s linear;
   opacity: 0;
 }
 
-.modal__is-opened {
+.modal_is-opened {
   visibility: visible;
   opacity: 1;
 }
@@ -26,12 +26,12 @@
   background-color: #fff;
   padding: 32px 50px;
   position: relative;
+  box-sizing: border-box;
 }
 
 .modal__close-btn {
   top: 32px;
   position: absolute;
-  top: 32px;
   right: 50px;
   width: 40px;
   height: 40px;
@@ -82,15 +82,12 @@
   border-radius: 8px;
   width: 156px;
   box-sizing: border-box;
+  border: none;
 }
 
 @media screen and (max-width: 768px) {
   .modal__submit-btn {
     width: 100%;
-  }
-
-  .modal__input {
-    width: 300px;
   }
 
   .modal__container {
