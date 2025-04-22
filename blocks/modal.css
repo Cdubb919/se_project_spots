@@ -62,6 +62,10 @@
   border-radius: 8px;
   border-color: #21212166;
   color: #212121;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 20px;
+  line-height: 100%;
 }
 
 .modal__label {
