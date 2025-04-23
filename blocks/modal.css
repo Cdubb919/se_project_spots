@@ -91,14 +91,24 @@
 
 @media screen and (max-width: 768px) {
   .modal__submit-btn {
-    width: 304px;
+    width: 300px;
   }
 
   .modal__container {
-    width: 100%;
+    width: calc(100% - 40px);
   }
 
   .modal__input {
-    width: 276px;
+    width: 100%;
+  }
+
+  .modal__close-btn {
+    right: 22px;
+    top: 25px;
+  }
+
+  .modal__title {
+    font-size: 24px;
+    margin: 0 0 24px;
   }
 }
