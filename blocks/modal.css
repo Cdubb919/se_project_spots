@@ -38,8 +38,13 @@
   height: 40px;
   border: none;
   background-color: #fff;
+  opacity: 40%;
 }
 
+.modal__close-btn:hover {
+  cursor: pointer;
+  opacity: 100%;
+}
 .modal__title {
   margin: 0 0 32px;
   font-size: 32px;
@@ -91,6 +96,11 @@
   border: none;
 }
 
+.modal__submit-btn:hover {
+  cursor: pointer;
+  opacity: 70%;
+}
+
 @media screen and (max-width: 768px) {
   .modal__submit-btn {
     width: 100%;
@@ -98,6 +108,8 @@
 
   .modal__container {
     padding: 22px 12px 12px;
+    right: 22px;
+    top: 25px;
   }
 
   .modal__input {
@@ -111,5 +123,6 @@
 
   .modal__title {
     font-size: 20px;
+    margin-bottom: 24px;
   }
 }
