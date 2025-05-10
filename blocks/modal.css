@@ -48,6 +48,7 @@
 
 .modal__close_type_preview {
   top: -40px;
+  background-image: url(../images/closeicondefault.svg);
   right: -40px;
   background-color: transparent;
   position: absolute;
@@ -60,6 +61,7 @@
 
 .modal__close_type_preview:hover {
   opacity: 60%;
+  background-image: url(../images/closeiconhover.svg);
 }
 
 .modal__close_type_preview img {
