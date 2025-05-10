@@ -10,6 +10,14 @@
   border-radius: 8px;
 }
 
+.card__delete-btn {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
 .card__title {
   max-width: 353px;
   text-overflow: ellipsis;
@@ -28,12 +36,25 @@
   height: 20px;
   border: none;
   background-color: transparent;
-  opacity: 40%;
+  opacity: 0.4;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: opacity 0.3s ease;
 }
 
 .card__like-btn:hover {
   cursor: pointer;
-  opacity: 100%;
+  opacity: 1;
+}
+
+.card__like-btn_active {
+  background-image: url(../images/likebtncolorchg.svg);
+  opacity: 1;
+}
+
+.card__like-btn_active:hover {
+  opacity: 0.4;
 }
 
 .card__content {

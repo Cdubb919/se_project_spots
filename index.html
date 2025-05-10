@@ -35,6 +35,20 @@
       </section>
       <section class="cards">
         <ul class="cards__list">
+          <template id="card_template">
+            <li class="card">
+              <button class="card__delete-btn" type="button">del</button>
+              <img class="card__image" src="" alt="" />
+              <div class="card__footer">
+                <h2 class="card__title"></h2>
+                <button
+                  aria-label="Like card"
+                  type="button"
+                  class="card__like-btn"
+                ></button>
+              </div>
+            </li>
+          </template>
           <li class="card">
             <img
               src="./images/1-photo-by-moritz-feldmann-from-pexels.jpg"
@@ -110,7 +124,7 @@
     <div class="modal" id="edit-profile-modal">
       <div class="modal__container">
         <button class="modal__close-btn">
-          <img src="./images/closeicon.svg" alt="close-icon">
+          <img src="./images/closeicon.svg" alt="close-icon" />
         </button>
         <h2 class="modal__title">Edit profile</h2>
         <form class="modal__form">
@@ -141,7 +155,7 @@
     <div class="modal" id="new-post-modal">
       <div class="modal__container">
         <button class="modal__close-btn">
-          <img src="./images/closeicon.svg" alt="close-icon">
+          <img src="./images/closeicon.svg" alt="close-icon" />
         </button>
         <h2 class="modal__title">New Post</h2>
         <form class="modal__form">
@@ -169,6 +183,26 @@
         </form>
       </div>
     </div>
+
+    <div class="modal modal_type_preview" id="preview-modal">
+      <div class="modal__image-container">
+        <button 
+        aria-label="Close modal"
+        class="modal__close-btn modal__close_type_preview"
+        type="button">
+        <img 
+        src="./images/closeicondefault.svg"
+        alt="close-icon" />
+         </button>
+          <img
+            src="#"
+            alt=""
+            class="modal__image"
+          />
+        <p class="modal__caption"></p>
+      </div>
+    </div>
+
     <script src="./scripts/index.js"></script>
   </body>
 </html>
