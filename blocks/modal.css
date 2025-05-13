@@ -48,7 +48,7 @@
 
 .modal__close-btn_type_preview {
   top: -40px;
-  background-image: url(../images/closeicondefault.svg);
+  background-image: url(../images/closemodalbtn.svg);
   right: -40px;
   background-color: transparent;
   position: absolute;
@@ -57,11 +57,12 @@
   padding: 0;
   border: none;
   cursor: pointer;
+  top: -4.49px;
 }
 
 .modal__close_type_preview:hover {
   opacity: 60%;
-  background-image: url(../images/closeiconhover.svg);
+  background-image: url(../images/closemodalhoverstate.svg);
 }
 
 .modal__title {
@@ -128,6 +129,13 @@
 
 .modal__caption {
   color: white;
+  background-color: #212121;
+  border-radius: 8px;
+  padding: 4px 8px;
+  justify-content: center;
+  width: 198px;
+  height: 24px;
+  align-items: center;
 }
 
 .modal__image-container {
