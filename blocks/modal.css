@@ -38,7 +38,6 @@
   height: 40px;
   border: none;
   background-color: #fff;
-  opacity: 40%;
 }
 
 .modal__close-btn:hover {
@@ -47,7 +46,6 @@
 }
 
 .modal__close-btn_type_preview {
-  top: -40px;
   background-image: url(../images/closemodalbtn.svg);
   right: -40px;
   background-color: transparent;
@@ -60,7 +58,7 @@
   top: -4.49px;
 }
 
-.modal__close_type_preview:hover {
+.modal__close-btn_type_preview:hover {
   opacity: 60%;
   background-image: url(../images/closemodalhoverstate.svg);
 }
@@ -145,6 +143,11 @@
 @media screen and (max-width: 768px) {
   .modal__submit-btn {
     width: 100%;
+  }
+
+  .modal__close-btn_type_preview {
+    color: #fff;
+    position: relative;
   }
 
   .modal__container {
