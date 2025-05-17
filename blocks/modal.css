@@ -155,9 +155,8 @@
 
   .modal__close-btn_type_preview {
     color: #fff;
-    position: absolute;
-    top: -158px;
-    left: -264px;
+    position: relative;
+    left: 348px;
   }
 
   .modal__container {
