@@ -1,7 +1,7 @@
-const intialCards = [
+const initialCards = [
     {
         name: "Golden Gate Bridge",
-        link: " https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
     },
     {
         name: "Val Thorens",
@@ -32,7 +32,7 @@ const intialCards = [
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
-const editProfileForm = editProfileModal.querySelector(".modal__form")
+const editProfileForm = editProfileModal.querySelector(".modal__form");
 const editProfileNameInput = editProfileModal.querySelector("#profile-name-input");
 const editProfileDescriptionInput = editProfileModal.querySelector("#profile-description-input");
 
@@ -103,24 +103,30 @@ editProfileBtn.addEventListener("click", function () {
     openModal(editProfileModal);
 })
 
-editProfileCloseBtn.addEventListener("click", function () {
+editProfileCloseBtn.addEventListener("click", () => {
     closeModal(editProfileModal);
-})
+    editProfileForm.reset();
+    const inputList = Array.from(editProfileForm.querySelectorAll(settings.inputSelector));
+    resetValidation(editProfileForm, inputList);
+});
 
 newPostBtn.addEventListener("click", function () {
     openModal(newPostModal);
 })
 
-newPostCloseBtn.addEventListener("click", function () {
+newPostCloseBtn.addEventListener("click", () => {
     closeModal(newPostModal);
-})
+    newPostForm.reset();
+    const inputList = Array.from(newPostForm.querySelectorAll(settings.inputSelector));
+    resetValidation(newPostForm, inputList);
+});
 
 function handleEditProfileSubmit(evt) {
     evt.preventDefault();
     profileNameEl.textContent = editProfileNameInput.value;
     profileDescriptionEl.textContent = editProfileDescriptionInput.value;
     closeModal(editProfileModal);
-}
+};
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
@@ -130,6 +136,8 @@ previewCloseBtn.addEventListener("click", function () {
 
 newPostForm.addEventListener("submit", function (evt) {
     evt.preventDefault();
+    const submitButton = newPostForm.querySelector(".modal__submit-btn");
+    disableButton(submitButton, settings);
     
     const inputValues = {
         name: newPostCaptionDescription.value,
