@@ -55,38 +55,48 @@ const previewCaption = previewModal.querySelector(".modal__caption");
 const previewCloseBtn = previewModal.querySelector(".modal__close-btn");
 
 const cardTemplate = document.querySelector("#card_template")
-.content.querySelector(".card");
+    .content.querySelector(".card");
+
 const cardsList = document.querySelector(".cards__list");
 
+const modals = document.querySelectorAll('.modal');
+
+modals.forEach((modal) => {
+    modal.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('modal')) {
+            closeModal(modal);
+        }
+    });
+});
 
 function getCardElement(data) {
-const cardElement = cardTemplate.cloneNode(true);
-const cardTitleEl = cardElement.querySelector(".card__title");
-const cardImageEl = cardElement.querySelector(".card__image");
+    const cardElement = cardTemplate.cloneNode(true);
+    const cardTitleEl = cardElement.querySelector(".card__title");
+    const cardImageEl = cardElement.querySelector(".card__image");
 
-cardImageEl.src = data.link;
-cardImageEl.alt = data.name;
-cardTitleEl.textContent = data.name;
-cardImageEl.addEventListener("click", () => {
-    previewImage.src = data.link;
-    previewImage.alt = data.name;
+    cardImageEl.src = data.link;
+    cardImageEl.alt = data.name;
+    cardTitleEl.textContent = data.name;
+    cardImageEl.addEventListener("click", () => {
+        previewImage.src = data.link;
+        previewImage.alt = data.name;
 
-    previewCaption.textContent = data.name;
+        previewCaption.textContent = data.name;
 
-    openModal(previewModal);
-});
+        openModal(previewModal);
+    });
 
-const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
-cardLikeBtnEl.addEventListener("click", () => {
-    cardLikeBtnEl.classList.toggle("card__like-btn_active");
-});
+    const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
+    cardLikeBtnEl.addEventListener("click", () => {
+        cardLikeBtnEl.classList.toggle("card__like-btn_active");
+    });
 
-const cardDeleteBtnEl = cardElement.querySelector(".card__delete-btn");
-cardDeleteBtnEl.addEventListener("click", () => {
-    cardElement.remove();
-});
+    const cardDeleteBtnEl = cardElement.querySelector(".card__delete-btn");
+    cardDeleteBtnEl.addEventListener("click", () => {
+        cardElement.remove();
+    });
 
-return cardElement;
+    return cardElement;
 }
 
 function openModal(modal) {
@@ -138,20 +148,20 @@ newPostForm.addEventListener("submit", function (evt) {
     evt.preventDefault();
     const submitButton = newPostForm.querySelector(".modal__submit-btn");
     disableButton(submitButton, settings);
-    
+
     const inputValues = {
         name: newPostCaptionDescription.value,
         link: newPostCardImageInput.value
     };
-    
+
     const cardElement = getCardElement(inputValues);
     cardsList.prepend(cardElement);
-    
+
     closeModal(newPostModal);
     newPostForm.reset();
 });
 
-intialCards.forEach(function (item) {
-   const cardElement = getCardElement(item);
+initialCards.forEach(function (item) {
+    const cardElement = getCardElement(item);
     cardsList.append(cardElement);
 });
