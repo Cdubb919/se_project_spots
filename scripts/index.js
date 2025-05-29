@@ -69,6 +69,24 @@ modals.forEach((modal) => {
     });
 });
 
+modals.forEach((modal) => {
+    modal.addEventListener('keydown', (evt) => {
+        if (evt.target.classList.contains('modal')) {
+            closeModal(modal);
+        }
+    });
+});
+
+function handleEscape(evt) {
+    if (evt.key === "Escape") {
+        const activeModal = document.querySelector(".modal_is-opened");
+        closeModal(activeModal);
+    }
+
+};
+
+
+
 function getCardElement(data) {
     const cardElement = cardTemplate.cloneNode(true);
     const cardTitleEl = cardElement.querySelector(".card__title");
@@ -101,10 +119,12 @@ function getCardElement(data) {
 
 function openModal(modal) {
     modal.classList.add("modal_is-opened");
+    document.addEventListener("keydown", handleEscape);
 }
 
 function closeModal(modal) {
     modal.classList.remove("modal_is-opened");
+    document.removeEventListener("keydown", handleEscape);
 }
 
 editProfileBtn.addEventListener("click", function () {
@@ -122,6 +142,8 @@ editProfileCloseBtn.addEventListener("click", () => {
 
 newPostBtn.addEventListener("click", function () {
     openModal(newPostModal);
+    const inputList = Array.from(newPostForm.querySelectorAll(settings.inputSelector));
+    const buttonElement = newPostForm.querySelector(settings.submitButtonSelector);
 })
 
 newPostCloseBtn.addEventListener("click", () => {
@@ -129,6 +151,7 @@ newPostCloseBtn.addEventListener("click", () => {
     newPostForm.reset();
     const inputList = Array.from(newPostForm.querySelectorAll(settings.inputSelector));
     resetValidation(newPostForm, inputList);
+    const buttonElement = newPostForm.querySelector(settings.submitButtonSelector);
 });
 
 function handleEditProfileSubmit(evt) {
@@ -147,12 +170,12 @@ previewCloseBtn.addEventListener("click", function () {
 newPostForm.addEventListener("submit", function (evt) {
     evt.preventDefault();
     const submitButton = newPostForm.querySelector(".modal__submit-btn");
-    disableButton(submitButton, settings);
 
     const inputValues = {
         name: newPostCaptionDescription.value,
         link: newPostCardImageInput.value
     };
+    console.log(inputValues)
 
     const cardElement = getCardElement(inputValues);
     cardsList.prepend(cardElement);
