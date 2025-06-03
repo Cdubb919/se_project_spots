@@ -62,15 +62,7 @@ const cardsList = document.querySelector(".cards__list");
 const modals = document.querySelectorAll('.modal');
 
 modals.forEach((modal) => {
-    modal.addEventListener('mousedown', (evt) => {
-        if (evt.target.classList.contains('modal')) {
-            closeModal(modal);
-        }
-    });
-});
-
-modals.forEach((modal) => {
-    modal.addEventListener('keydown', (evt) => {
+    modal.addEventListener('click', (evt) => {
         if (evt.target.classList.contains('modal')) {
             closeModal(modal);
         }
@@ -84,8 +76,6 @@ function handleEscape(evt) {
     }
 
 };
-
-
 
 function getCardElement(data) {
     const cardElement = cardTemplate.cloneNode(true);
@@ -142,16 +132,12 @@ editProfileCloseBtn.addEventListener("click", () => {
 
 newPostBtn.addEventListener("click", function () {
     openModal(newPostModal);
-    const inputList = Array.from(newPostForm.querySelectorAll(settings.inputSelector));
     const buttonElement = newPostForm.querySelector(settings.submitButtonSelector);
 })
 
 newPostCloseBtn.addEventListener("click", () => {
     closeModal(newPostModal);
-    newPostForm.reset();
     const inputList = Array.from(newPostForm.querySelectorAll(settings.inputSelector));
-    resetValidation(newPostForm, inputList);
-    const buttonElement = newPostForm.querySelector(settings.submitButtonSelector);
 });
 
 function handleEditProfileSubmit(evt) {
@@ -182,6 +168,7 @@ newPostForm.addEventListener("submit", function (evt) {
 
     closeModal(newPostModal);
     newPostForm.reset();
+    toggleButtonState(buttonEl, false);
 });
 
 initialCards.forEach(function (item) {
