@@ -34,7 +34,7 @@ const hasInvalidInput = (inputList) => {
     });
 };
 
-const toggleButtonState = (inputList, buttonEl, config) => {
+export const toggleButtonState = (inputList, buttonEl, config) => {
     if (hasInvalidInput(inputList)) {
         buttonEl.disabled = true;
         buttonEl.classList.add(config.inactiveButtonClass);

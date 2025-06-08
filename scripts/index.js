@@ -1,4 +1,4 @@
-import {settings, resetValidation} from './validation.js';
+import {settings, resetValidation, toggleButtonState} from './validation.js';
 
 const initialCards = [
     {
@@ -135,7 +135,6 @@ editProfileCloseBtn.addEventListener("click", () => {
 
 newPostBtn.addEventListener("click", function () {
     openModal(newPostModal);
-    const buttonElement = newPostForm.querySelector(settings.submitButtonSelector);
 })
 
 newPostCloseBtn.addEventListener("click", () => {
@@ -169,7 +168,7 @@ newPostForm.addEventListener("submit", function (evt) {
 
     closeModal(newPostModal);
     newPostForm.reset();
-    const inputList = Array.from(editProfileBtn.querySelectorAll(settings.inputSelector));
+    const inputList = Array.from(newPostForm.querySelectorAll(settings.inputSelector));
     toggleButtonState(inputList, submitButton, settings);
 });
 
