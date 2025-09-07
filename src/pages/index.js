@@ -46,6 +46,7 @@ const api = new Api({
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
+const editAvatarModal = document.querySelector("#profile-avatar-input");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 const editProfileForm = editProfileModal.querySelector(".modal__form");
 const editProfileNameInput = editProfileModal.querySelector("#profile-name-input");
@@ -59,6 +60,7 @@ const newPostCardImageInput = newPostModal.querySelector("#card-image-input");
 const newPostCaptionDescription = newPostModal.querySelector("#caption-description-input");
 
 const avatarForm = document.querySelector("#edit-avatar-form");
+const avatarEditBtn = document.querySelector(".profile__avatar-btn");
 const avatarInput = avatarForm.elements["avatar"];
 const avatarSubmitBtn = avatarForm.querySelector(".modal__submit-btn");
 
@@ -123,14 +125,41 @@ function handleEscape(evt) {
 
 };
 
+avatarForm.addEventListener('submit', handleAvatarSubmit);
+
+
 function handleAvatarSubmit(evt) {
-    api
-        .editAvatarInfo(avatarInput.value)
+    evt.preventDefault();
+
+    api.editAvatarInfo(avatarInput.value)
         .then((data) => {
             console.log(data.avatar);
+
+            const avatarImage = document.querySelector('.profile__avatar'); // Adjust selector as needed
+            if (avatarImage) {
+                avatarImage.src = data.avatar;
+            }
+
+            closeModal(editAvatarModal);
+
+            avatarInput.value = '';
         })
-        .catch(console.error);
+
+        .catch((err) => {
+            console.error('Failed to update avatar:', err);
+            alert('Could not update avatar. Please try again.');
+        });
 }
+
+avatarEditBtn.addEventListener("click", () => {
+    openModal(editAvatarModal);
+
+    const editAvatarCloseBtn = editAvatarModal.querySelector(".modal__close-btn");
+    editAvatarCloseBtn.addEventListener("click", () => {
+        closeModal(editAvatarModal);
+    });
+})
+
 
 function handleDeleteSubmit(evt) {
     evt.preventDefault();
@@ -188,61 +217,44 @@ function handleImageClick(data) {
 }
 
 function getCardElement(data) {
-
     const cardTemplate = document.querySelector("#card_template");
-    const cardElement = cardTemplate.content
-        .querySelector(".card")
-        .cloneNode(true);
-
-    cardElement.setAttribute("data-id", data._id);
-
+    const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
 
     const cardTitleEl = cardElement.querySelector(".card__title");
     const cardImageEl = cardElement.querySelector(".card__image");
-    const likeButton = cardElement.querySelector(".card__like-button");
+    const likeButton = cardElement.querySelector(".card__like-btn");
     const deleteButton = cardElement.querySelector(".card__delete-btn");
 
-
+    cardTitleEl.textContent = data.name;
     cardImageEl.src = data.link;
     cardImageEl.alt = data.name;
-    cardTitleEl.textContent = data.name;
+
+    if (data.isLiked) {
+        likeButton.classList.add("card__like-btn_active");
+    }
+
+    likeButton.addEventListener("click", () => {
+        const isLiked = likeButton.classList.contains("card__like-btn_active");
+
+        api.addLike(data._id, isLiked)
+            .then(updatedCard => {
+                console.log("Updated card response:", updatedCard);
+
+                likeButton.classList.toggle("card__like-btn_active", updatedCard.isLiked);
+            })
+            .catch(err => console.error("Like toggle failed:", err));
+    });
+
 
     cardImageEl.addEventListener("click", () => handleImageClick(data));
 
-    const cardList = document.querySelector(".cards__list");
-
-    const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
-    cardLikeBtnEl.addEventListener("click", () => {
-        cardLikeBtnEl.classList.toggle("card__like-btn_active");
-    });
-
-    deleteButton.addEventListener("click", (evt) => {
+    deleteButton.addEventListener("click", () => {
         handleDeleteCard(cardElement, data);
-
-        cardToDelete = cardElement;
-        cardToDeleteId = data._id;
-
         openModal(deleteModal);
     });
 
-    const confirmDeleteBtn = document.querySelector("#delete-modal .modal__submit-btn[type='submit']");
-    const cancelDeleteBtn = document.querySelector("#delete-modal .modal__submit-btn[type='button']");
-
-    confirmDeleteBtn.addEventListener("click", () => {
-        if (cardToDelete) {
-            cardToDelete.remove();
-            cardToDelete = null;
-            closeModal(document.querySelector("#delete-modal"));
-        }
-    });
-
-    cancelDeleteBtn.addEventListener("click", () => {
-        cardToDelete = null;
-        closeModal(document.querySelector("#delete-modal"));
-    });
     return cardElement;
 }
-
 
 function openModal(modal) {
     modal.classList.add("modal_is-opened");
@@ -383,6 +395,14 @@ document.addEventListener("click", (evt) => {
         openDeleteModal();
     }
 });
+
+api.getUserInfo().then((userData) => {
+    const avatarImage = document.querySelector('.profile__avatar');
+    if (avatarImage) {
+        avatarImage.src = userData.avatar;
+    }
+});
+
 
 deleteForm.addEventListener("submit", handleDeleteSubmit);
 
