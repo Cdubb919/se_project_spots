@@ -43,7 +43,9 @@ const api = new Api({
         "Content-Type": "application/json"
     }
 });
-
+/* -------------------------------------------------------------------------- */
+/*                                  elements                                  */
+/* -------------------------------------------------------------------------- */
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editAvatarModal = document.querySelector("#profile-avatar-input");
@@ -81,6 +83,8 @@ const previewCloseBtn = document.querySelector(".modal__close-btn");
 const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = deleteModal.querySelector(".modal__form");
 
+const deleteCancelBtn = deleteModal.querySelector(".modal__submit_type_cancel");
+const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn_type_preview"); 
 
 const cardTemplate = document.querySelector("#card_template")
     .content.querySelector(".card");
@@ -102,6 +106,9 @@ modals.forEach((modal) => {
         }
     });
 });
+/* -------------------------------------------------------------------------- */
+/*                                  functions                                 */
+/* -------------------------------------------------------------------------- */
 
 function handleLike(evt, id) {
     const likeButton = evt.target;
@@ -115,7 +122,6 @@ function handleLike(evt, id) {
             console.error("Failed to update like status:", err);
         });
 }
-
 
 function handleEscape(evt) {
     if (evt.key === "Escape") {
@@ -135,7 +141,7 @@ function handleAvatarSubmit(evt) {
         .then((data) => {
             console.log(data.avatar);
 
-            const avatarImage = document.querySelector('.profile__avatar'); // Adjust selector as needed
+            const avatarImage = document.querySelector('.profile__avatar'); 
             if (avatarImage) {
                 avatarImage.src = data.avatar;
             }
@@ -205,6 +211,7 @@ deleteForm.addEventListener('submit', (evt) => {
 
 function handleDeleteCard(cardElement, data) {
     selectedCard = cardElement;
+    
     selectedCardId = data._id;
     openModal(deleteModal);
 }
@@ -272,6 +279,10 @@ document.addEventListener("click", function (evt) {
     }
 });
 
+deleteCancelBtn.addEventListener("click", () => {
+    closeModal(deleteModal);
+  });
+
 editProfileBtn.addEventListener("click", () => {
     editProfileNameInput.value = profileNameEl.textContent;
     editProfileDescriptionInput.value = profileDescriptionEl.textContent;
@@ -336,6 +347,10 @@ previewCloseBtn.addEventListener("click", function () {
     closeModal(previewModal);
 });
 
+deleteModalCloseBtn.addEventListener("click", function () {
+    closeModal(deleteModal);
+})
+
 newPostForm.addEventListener("submit", function (evt) {
     evt.preventDefault();
     const submitButton = newPostForm.querySelector(".modal__submit-btn");
@@ -370,38 +385,31 @@ newPostForm.addEventListener("submit", function (evt) {
 });
 
 api.getInitialCards()
-    .then((cards) => {
-        cards.forEach((item) => {
-            console.log('Card item:', item);
-            const cardElement = getCardElement(item);
-            cardsList.append(cardElement);
-        });
-    })
-    .catch(console.error);
+  .then((cards) => {
+    cards.forEach((item) => {
+      const cardElement = getCardElement(item);
+      cardsList.append(cardElement);
+    });
+  })
+  .catch(err => {
+    console.error("Failed to load cards:", err);
+    alert("Could not load cards. Please try again.");
+  });
 
-document.addEventListener("click", (evt) => {
-    if (evt.target.classList.contains("card__delete-btn")) {
-        const cardElement = evt.target.closest(".card");
-        const cardId = cardElement?.dataset.id;
-
-        if (!cardId) {
-            console.error("Card ID not found");
-            return;
-        }
-
-        cardToDelete = cardElement;
-        cardToDeleteId = cardId;
-
-        openDeleteModal();
-    }
-});
-
-api.getUserInfo().then((userData) => {
+api.getUserInfo()
+  .then((userData) => {
     const avatarImage = document.querySelector('.profile__avatar');
     if (avatarImage) {
-        avatarImage.src = userData.avatar;
+      avatarImage.src = userData.avatar;
     }
-});
+    profileNameEl.textContent = userData.name;
+    profileDescriptionEl.textContent = userData.about;
+  })
+  .catch(err => {
+    console.error("Failed to load user info:", err);
+    alert("Could not load user info. Please try again.");
+  });
+
 
 
 deleteForm.addEventListener("submit", handleDeleteSubmit);
