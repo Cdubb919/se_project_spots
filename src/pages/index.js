@@ -5,37 +5,6 @@ import Api from '../utils/Api.js';
 
 const images = require.context('../images', false, /\.(svg|jpe?g)$/);
 
-// const initialCards = [
-//     {
-//         name: "Golden Gate Bridge",
-//         link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-//     },
-//     {
-//         name: "Val Thorens",
-//         link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-//     },
-//     {
-//         name: "Restaurant terrace",
-//         link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-//     },
-//     {
-//         name: "An outdoor cafe",
-//         link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-//     },
-//     {
-//         name: "A very long bridge, over the forest and through the trees",
-//         link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-//     },
-//     {
-//         name: "Tunnel with morning light",
-//         link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-//     },
-//     {
-//         name: "Mountain house",
-//         link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-//     },
-// ];
-
 const api = new Api({
     baseUrl: "https://around-api.en.tripleten-services.com/v1",
     headers: {
@@ -73,10 +42,10 @@ const newPostImageLink = document.querySelector(".card__image");
 const newPostCaption = document.querySelector(".card__title");
 
 const previewModal = document.querySelector("#avatar-modal");
-const previewCaption = document.querySelector("#avatar-modal .modal__caption"); 
+const previewCaption = document.querySelector("#avatar-modal .modal__caption");
 
 const previewImage = document.querySelector("#avatar-modal .modal__image");
-const previewCloseBtn = document.querySelector(".modal__close-btn");
+const previewCloseBtn = previewModal.querySelector(".modal__close-btn");
 
 const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = deleteModal.querySelector(".modal__form");
@@ -399,11 +368,17 @@ document.addEventListener("click", (evt) => {
 });
 
 api.getUserInfo().then((userData) => {
+    profileNameEl.textContent = userData.name;
+    profileDescriptionEl.textContent = userData.about;
+
     const avatarImage = document.querySelector('.profile__avatar');
     if (avatarImage) {
         avatarImage.src = userData.avatar;
     }
-});
+})
+    .catch((err) => {
+        console.error("Failed to load user info:", err);
+    });
 
 
 deleteForm.addEventListener("submit", handleDeleteSubmit);
